@@ -20,7 +20,7 @@ jobs:
         # Write the commands to install ReportGenerator and Stryker into your pipeline.
 
       - name: Run unit tests
-        run: dotnet test --Collect:"XPlat Code Coverage" --results-directory TestResults
+        run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResults
         # Write a command to execute unit tests while collecting code coverage
         
       - name: Generate report

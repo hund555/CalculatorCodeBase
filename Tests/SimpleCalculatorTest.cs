@@ -88,4 +88,43 @@ public class SimpleCalculatorTest
         // Assert
         Assert.That(result, Is.EqualTo(1));
     }
+
+    [Test]
+    public void Factorial3()
+    {
+        // Arrange
+        ICalculator calc = new SimpleCalculator();
+        int a = -1;
+
+        // Act & assert
+        var ex = Assert.Throws<ArgumentException>(() => calc.Factorial(a));
+    }
+
+    [Test]
+    public void IsPrime()
+    {
+        // Arrange
+        ICalculator calc = new SimpleCalculator();
+        int a = 17;
+
+        // Act
+        bool result = calc.IsPrime(a);
+
+        // Assert
+        Assert.That(result, Is.True);
+    }
+
+    [Test]
+    public void IsNotPrime()
+    {
+        // Arrange
+        ICalculator calc = new SimpleCalculator();
+        int a = 9;
+
+        // Act
+        bool result = calc.IsPrime(a);
+
+        // Assert
+        Assert.That(result, Is.False);
+    }
 }

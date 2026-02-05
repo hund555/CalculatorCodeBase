@@ -17,33 +17,27 @@ jobs:
         run: |
           dotnet tool install -g dotnet-reportgenerator-globaltool
           dotnet tool install -g dotnet-stryker
-        # Write the commands to install ReportGenerator and Stryker into your pipeline.
-
+        
       - name: Run unit tests
         run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResults
-        # Write a command to execute unit tests while collecting code coverage
         
       - name: Generate report
         run: reportgenerator -reports:"TestResults/**/coverage.cobertura.xml" -targetdir:coverage-report -reporttypes:Html
-        # Use the ReportGenerator tool to generate a report from the code coverage results
-
+        
       - name: Run Mutation Tests
         run: dotnet stryker --break-at 80
-        # Write a command to execute mutation tests using Stryker with a threshold of 80% mutation score
-
+        
       - name: Collect Coverage Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: coverage-report
-        # Complete this step sp it uploads the coverage report to the artifacts - make it run always even if previous steps fail
-
+        
       - name: Collect Stryker Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: stryker-report
           path: StrykerOutput/**/mutation-report.html
-        # Complete this step so it uploads the Stryker report to the artifacts - make it run always even if previous steps fail
-    
+        

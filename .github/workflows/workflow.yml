@@ -51,4 +51,9 @@ jobs:
         with:
           name: stryker-report
           path: StrykerOutput/**/mutation-report.html
+      
+      - name: Complete static code analysis
+        run: |
+          dotnet sonarscanner end \
+            /d:sonar.token=${{ secrets.SONAR_TOKEN }}
         
